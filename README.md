@@ -8,11 +8,9 @@
 
 Serviço HTTP em `FastAPI` para converter documentos `PDF` e `DOCX` em `Markdown` usando [Docling](https://github.com/DS4SD/docling), com OCR, extração de imagens e enhancement opcional com `Ollama`, `OpenAI` ou `Anthropic`.
 
-O repositório foi reorganizado para compartilhamento com colegas, com foco em:
+O repositório foi organizado com foco em:
 
 - configuração reproduzível via `.env.example`
-- remoção de artefatos locais e arquivos desnecessários
-- redução de risco de vazamento de segredos
 - documentação mínima para uso, manutenção e evolução
 
 ## Principais funcionalidades
