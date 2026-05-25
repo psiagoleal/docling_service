@@ -1,0 +1,39 @@
+services:
+    docling:
+        build:
+            context: .
+        restart: unless-stopped
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: all
+                          capabilities: [gpu]
+        ports:
+            - "${DOCLING_HOST_PORT:-8010}:8001"
+        environment:
+            PYTHONUNBUFFERED: "${PYTHONUNBUFFERED:-1}"
+            OLLAMA_BASE_URL: "${OLLAMA_BASE_URL:-http://host.docker.internal:11434}"
+            OLLAMA_TEXT_MODEL: "${OLLAMA_TEXT_MODEL:-qwen3:8b}"
+            OLLAMA_VISION_MODEL: "${OLLAMA_VISION_MODEL:-llava}"
+            OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+            OPENAI_TEXT_API_KEY: "${OPENAI_TEXT_API_KEY:-}"
+            OPENAI_TEXT_MODEL: "${OPENAI_TEXT_MODEL:-gpt-5.4-mini}"
+            OPENAI_VISION_API_KEY: "${OPENAI_VISION_API_KEY:-}"
+            OPENAI_VISION_MODEL: "${OPENAI_VISION_MODEL:-gpt-5.4-mini}"
+            ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY:-}"
+            ANTHROPIC_TEXT_API_KEY: "${ANTHROPIC_TEXT_API_KEY:-}"
+            ANTHROPIC_TEXT_MODEL: "${ANTHROPIC_TEXT_MODEL:-claude-sonnet-4-20250514}"
+            ANTHROPIC_VISION_API_KEY: "${ANTHROPIC_VISION_API_KEY:-}"
+            ANTHROPIC_VISION_MODEL: "${ANTHROPIC_VISION_MODEL:-claude-sonnet-4-20250514}"
+            LLM_TIMEOUT: "${LLM_TIMEOUT:-600}"
+            VISION_BATCH_SIZE: "${VISION_BATCH_SIZE:-3}"
+            VISION_BATCH_SLEEP: "${VISION_BATCH_SLEEP:-10}"
+            LLM_MAX_RETRIES: "${LLM_MAX_RETRIES:-3}"
+            LLM_MAX_TOKENS: "${LLM_MAX_TOKENS:-16384}"
+            LLM_REMOVE_HEADERS_FOOTERS: "${LLM_REMOVE_HEADERS_FOOTERS:-true}"
+            ENHANCE_CHUNK_SIZE: "${ENHANCE_CHUNK_SIZE:-8000}"
+            ENHANCE_CHUNK_SLEEP: "${ENHANCE_CHUNK_SLEEP:-5}"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"

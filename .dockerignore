@@ -1,0 +1,11 @@
+.git/
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+.env
+.env.*
+docling_output_*/
+docs/
+CHANGELOG.md
+LICENSE

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docling-service"
+version = "0.1.0"
+description = "HTTP service for converting PDF and DOCX documents to Markdown with Docling, OCR and optional LLM enhancement."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "anthropic>=0.86.0",
+    "docling",
+    "docling-core",
+    "easyocr",
+    "fastapi",
+    "httpx",
+    "openai>=2.30.0",
+    "pdf2image",
+    "python-multipart",
+    "uvicorn[standard]",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
