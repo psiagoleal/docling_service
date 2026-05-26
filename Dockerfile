@@ -20,6 +20,8 @@ RUN apt-get update \
         libreoffice \
         pandoc \
         poppler-utils \
+        libgl1 \
+        libglib2.0-0 \
     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1 \
     && python -m ensurepip --upgrade \

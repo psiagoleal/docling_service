@@ -145,6 +145,20 @@ make health
 make smoke FILE=./documento.pdf
 ```
 
+## Troubleshooting
+
+### Erro do `EasyOCR` no container
+
+Se o log mostrar algo como `EasyOCR is not installed`, mas o pacote já estiver presente na imagem, a causa pode ser uma dependência nativa do OpenCV ausente no container, tipicamente `libGL.so.1`.
+
+A imagem Docker deste projeto instala `libgl1` e `libglib2.0-0` para cobrir esse caso. Depois de atualizar a imagem, faça um rebuild completo:
+
+```bash
+docker compose down
+docker compose build --no-cache
+docker compose up -d
+```
+
 ## Variáveis de ambiente principais
 
 | Variável | Padrão | Descrição |
